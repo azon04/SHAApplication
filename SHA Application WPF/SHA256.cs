@@ -38,8 +38,8 @@ namespace SHA_Console
             };
 
             ChunkMessage(message);
-            Console.WriteLine(RightRotate((uint)2, 2));
-            Console.WriteLine(messageChunks.Count);
+            //Console.WriteLine(RightRotate((uint)2, 2));
+            //Console.WriteLine(messageChunks.Count);
             foreach (Chunk chunk in messageChunks)
             {
                 uint[] w = new uint[64];
@@ -53,7 +53,7 @@ namespace SHA_Console
                     S1 = RightRotate(w[i - 2], 17) ^ RightRotate(w[i - 2], 19) ^ (w[i - 2] >> 10);
 
                     w[i] = w[i - 16] + S0 + w[i - 7] + S1;
-                    Console.WriteLine("w[" + i + "] : " + w[i]);
+                    //Console.WriteLine("w[" + i + "] : " + w[i]);
                 }
 
                 uint[] a = new uint[8];
@@ -86,17 +86,17 @@ namespace SHA_Console
                 }
             }
 
-            foreach (Chunk chunk in messageChunks)
-            {
-                chunk.Print();
-            }
+            //foreach (Chunk chunk in messageChunks)
+            //{
+            //    chunk.Print();
+            //}
 
             for (int i = 0; i < 8; i++)
             {
                 res += h[i].ToString("X") + " ";
             }
 
-            Console.WriteLine(res);
+            //Console.WriteLine(res);
             return res;
         }
 
@@ -121,8 +121,8 @@ namespace SHA_Console
             };
 
             ChunkMessageFile(fileName);
-            Console.WriteLine(RightRotate((uint)2, 2));
-            Console.WriteLine(messageChunks.Count);
+            //Console.WriteLine(RightRotate((uint)2, 2));
+            //Console.WriteLine(messageChunks.Count);
             foreach (Chunk chunk in messageChunks)
             {
                 uint[] w = new uint[64];
@@ -136,7 +136,7 @@ namespace SHA_Console
                     S1 = RightRotate(w[i - 2], 17) ^ RightRotate(w[i - 2], 19) ^ (w[i - 2] >> 10);
                     
                     w[i] = w[i - 16] + S0 + w[i - 7] + S1;
-                    Console.WriteLine("w["+i+"] : " + w[i]);
+                    //Console.WriteLine("w["+i+"] : " + w[i]);
                 }
 
                 uint[] a = new uint[8];
@@ -168,17 +168,17 @@ namespace SHA_Console
                 }
             }
 
-            foreach (Chunk chunk in messageChunks)
-            {
-                chunk.Print();
-            }
+            //foreach (Chunk chunk in messageChunks)
+            //{
+            //    chunk.Print();
+            //}
 
             for (int i = 0; i < 8; i++)
             {
                 res += h[i].ToString("X") + " ";
             }
 
-            Console.WriteLine(res);
+            //Console.WriteLine(res);
             return res;
         }
 
@@ -218,7 +218,7 @@ namespace SHA_Console
             byte[] temp = new byte[n_byte];
             int length = fs.Read(temp, offset, n_byte);
 
-            Console.WriteLine(Encoding.ASCII.GetString(temp));
+            //Console.WriteLine(Encoding.ASCII.GetString(temp));
             Chunk chunk;
 
             while (length == n_byte)
@@ -234,14 +234,14 @@ namespace SHA_Console
 
                 offset += length;
                 length = fs.Read(temp, 0, n_byte);
-                Console.WriteLine(Encoding.ASCII.GetString(temp));
+                //Console.WriteLine(Encoding.ASCII.GetString(temp));
             }
-            Console.WriteLine(Encoding.ASCII.GetString(temp) +":"+ length);
+            //Console.WriteLine(Encoding.ASCII.GetString(temp) +":"+ length);
 
             int k_zero = n_byte - ((int)(fs.Length % n_byte)) - 64 / 8;
             if (k_zero == 0) k_zero = 448 / 8;
 
-            Console.WriteLine("Zero adding : "+ k_zero);
+            //Console.WriteLine("Zero adding : "+ k_zero);
 
             byte[] bytes_to_append = new byte[k_zero];
             bytes_to_append[0] = 128;
@@ -268,8 +268,8 @@ namespace SHA_Console
                 }
                 messageChunks.Add(chunk);
             }
-            Console.WriteLine("Length of Bit Append :" + bytes_to_append.Count());
-            Console.WriteLine("Index of Bit Append :" + i_append);
+            //Console.WriteLine("Length of Bit Append :" + bytes_to_append.Count());
+            //Console.WriteLine("Index of Bit Append :" + i_append);
             while (i_append < bytes_to_append.Count())
             {
                 chunk = new Chunk();
@@ -315,12 +315,12 @@ namespace SHA_Console
                 Encoding.ASCII.GetBytes(message.Substring(offset, length)).CopyTo(temp, 0);
                 Console.WriteLine(Encoding.ASCII.GetString(temp));
             }
-            Console.WriteLine(Encoding.ASCII.GetString(temp) + ":" + length);
+            //Console.WriteLine(Encoding.ASCII.GetString(temp) + ":" + length);
 
             int k_zero = n_byte - ((int)(message.Length % n_byte)) - 64 / 8;
             if (k_zero == 0) k_zero = 448 / 8;
 
-            Console.WriteLine("Zero adding : " + k_zero);
+            //Console.WriteLine("Zero adding : " + k_zero);
 
             byte[] bytes_to_append = new byte[k_zero];
             bytes_to_append[0] = 128;
@@ -347,8 +347,8 @@ namespace SHA_Console
                 }
                 messageChunks.Add(chunk);
             }
-            Console.WriteLine("Length of Bit Append :" + bytes_to_append.Count());
-            Console.WriteLine("Index of Bit Append :" + i_append);
+            //Console.WriteLine("Length of Bit Append :" + bytes_to_append.Count());
+            //Console.WriteLine("Index of Bit Append :" + i_append);
             while (i_append < bytes_to_append.Count())
             {
                 chunk = new Chunk();
@@ -438,12 +438,12 @@ namespace SHA_Console
 
             public void Print()
             {
-                Console.WriteLine("Chunk Length : " + chunkBlocks.Count);
+                //Console.WriteLine("Chunk Length : " + chunkBlocks.Count);
                 foreach (uint i in chunkBlocks)
                 {
-                    Console.Write(i + " ");
+                    //Console.Write(i + " ");
                 }
-                Console.WriteLine();
+                //Console.WriteLine();
             }
         }
         #endregion
