@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Numerics;
 
 namespace SHA_Console
 {
@@ -17,6 +18,11 @@ namespace SHA_Console
             messageChunks = new List<Chunk>();
         }
 
+        /// <summary>
+        /// Get String of Message Digest
+        /// </summary>
+        /// <param name="message">String Message</param>
+        /// <returns>String of Message Digest</returns>
         public string GetMessageDigest(string message)
         {
             string res = "";
@@ -93,13 +99,18 @@ namespace SHA_Console
 
             for (int i = 0; i < 8; i++)
             {
-                res += h[i].ToString("X") + " ";
+                res += h[i].ToString("X") + "";
             }
 
             //Console.WriteLine(res);
             return res;
         }
 
+        /// <summary>
+        /// Get Message Digest of A file
+        /// </summary>
+        /// <param name="fileName">Path of Message</param>
+        /// <returns>String that represent the message digest (Hex Number)</returns>
         public string GetMessageDigestFromFile(string fileName)
         {
             string res = "";
@@ -175,11 +186,21 @@ namespace SHA_Console
 
             for (int i = 0; i < 8; i++)
             {
-                res += h[i].ToString("X") + " ";
+                res += h[i].ToString("X");
             }
 
             //Console.WriteLine(res);
             return res;
+        }
+
+        /// <summary>
+        /// Get BigInteger that represents Message Digest
+        /// </summary>
+        /// <param name="s">String of Message</param>
+        /// <returns>BigInteger that represents the message Digest</returns>
+        public BigInteger GetMessageDigestToBigInteger(string s)
+        {
+            return BigInteger.Parse(GetMessageDigest(s), System.Globalization.NumberStyles.HexNumber);
         }
 
         private int RightRotate(int i, int bits)

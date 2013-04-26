@@ -78,8 +78,9 @@ namespace SHA_Application_WPF
                     digest = sha256Object.GetMessageDigestFromFile(txtFileName.Text);
                 else
                 {
-                    btnSaveMessage_Click(null, null);
+                    //btnSaveMessage_Click(null, null);
                     digest = sha256Object.GetMessageDigest(txtMessage.Text);
+                    MessageBox.Show(sha256Object.GetMessageDigestFromString(txtMessage.Text).ToString());
                 }
                 txtDigest.Text = digest;
             }
