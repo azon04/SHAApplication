@@ -1,4 +1,4 @@
 # SHAApplication
-Simple Implementation of SHA Algorithm Application.
+Simple C# Implementation of SHA Algorithm Windows Application.
 Algorithm implemented :
 * SHA-256
